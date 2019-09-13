@@ -1,4 +1,38 @@
 package at.htl.football;
 
 public class Match {
+
+    String homeName;
+    String guestName;
+    int homeGoals;
+    int guestGoals;
+
+    public Match(String homeName, String guestName, int homeGoals, int guestGoals) {
+        this.homeName = homeName;
+        this.guestName = guestName;
+        this.homeGoals = homeGoals;
+        this.guestGoals = guestGoals;
+    }
+
+    public String getHomeName() {
+        return homeName;
+    }
+
+    public String getGuestName() {
+        return guestName;
+    }
+
+    public int getHomeGoals() {
+        return homeGoals;
+    }
+
+    public int getGuestGoals() {
+        return guestGoals;
+    }
+
+    //TODO
+    /*
+    * getHomePoints()
+    * getGuestPoints()
+    * */
 }
