@@ -2,10 +2,10 @@ package at.htl.football;
 
 public class Match {
 
-    String homeName;
-    String guestName;
-    int homeGoals;
-    int guestGoals;
+    private String homeName;
+    private String guestName;
+    private int homeGoals;
+    private int guestGoals;
 
     public Match(String homeName, String guestName, int homeGoals, int guestGoals) {
         this.homeName = homeName;

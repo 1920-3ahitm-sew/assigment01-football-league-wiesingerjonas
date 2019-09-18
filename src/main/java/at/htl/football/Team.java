@@ -1,20 +1,51 @@
 package at.htl.football;
 
-public class Team {
-    String name;
-    int points;
-    int wins;
-    int draws;
-    int defeats;
-    int goalsShot;
-    int goalsReceived;
+public class Team implements Comparable<Team>{
+    private String name;
+    private int points = 0;
+    private int wins = 0;
+    private int draws = 0;
+    private int defeats = 0;
+    private int goalsShot = 0;
+    private int goalsReceived = 0;
 
     public Team(String name) {
         this.name = name;
     }
 
     public void addMatch(Match match){
-        return;
+
+        int guestGoals = match.getGuestGoals();
+        int homeGoals = match.getHomeGoals();
+
+        if(match.getHomeName().equals(name)){
+
+            if(guestGoals == homeGoals){
+                this.points++;
+                this.draws++;
+            }else if(guestGoals < homeGoals){
+                this.points += 3;
+                this.wins++;
+            }else {
+                this.defeats++;
+            }
+            this.goalsShot += match.getHomeGoals();
+            this.goalsReceived += match.getGuestGoals();
+
+        }else if(match.getGuestName().equals(name)){
+            if(guestGoals == homeGoals){
+                this.points++;
+                this.draws++;
+            }else if(guestGoals < homeGoals){
+                this.defeats++;
+            }else {
+                this.points += 3;
+                this.wins++;
+            }
+            this.goalsShot += match.getGuestGoals();
+            this.goalsReceived += match.getHomeGoals();
+        }
+
     }
 
     //region Getter
@@ -49,9 +80,16 @@ public class Team {
     //endregion
 
     public int getGoalDifference(){
-        return -1;
+        return goalsShot - goalsReceived;
     }
-    public int copareTo(Team team){
-        return -1;
+    @Override
+    public int compareTo(Team o) {
+        if (points > o.getPoints()) {
+            return 1;
+        } else if (points < o.getPoints()) {
+            return -1;
+        } else {
+            return Integer.compare(getGoalDifference(), o.getGoalDifference());
+        }
     }
 }
