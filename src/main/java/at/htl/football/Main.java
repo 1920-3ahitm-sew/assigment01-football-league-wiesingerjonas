@@ -45,7 +45,7 @@ public class Main {
     }
 
     private static void printTable(List<Team> teams) {
-
+        System.out.println(teams.size());
     }
 
 }
