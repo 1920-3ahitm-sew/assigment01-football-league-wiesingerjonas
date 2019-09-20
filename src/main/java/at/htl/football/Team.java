@@ -79,6 +79,13 @@ public class Team implements Comparable<Team>{
 
     //endregion
 
+    //region Setter
+    public void setPoints(int points) {
+        this.points = points;
+    }
+    //endregion
+
+
     public int getGoalDifference(){
         return goalsShot - goalsReceived;
     }

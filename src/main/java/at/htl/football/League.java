@@ -6,14 +6,14 @@ import java.util.List;
 
 public class League {
 
-    private List<Team> teams = new ArrayList<>();
+    public static List<Team> teams = new ArrayList<>();
 
-    public void addMatchResult(Match match){
+    public static void addMatchResult(Match match){
         findOrCreateTeam(match.getHomeName()).addMatch(match);
         findOrCreateTeam(match.getGuestName()).addMatch(match);
     }
 
-    private Team findOrCreateTeam(String teamName){
+    public static Team findOrCreateTeam(String teamName){
 
         for (Team team : teams) {
             if (team.getName().equals(teamName)) {
