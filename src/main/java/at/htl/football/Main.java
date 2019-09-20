@@ -5,24 +5,22 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
 
     Match match;
     Team team;
-    League league;
 
     public static void main(String[] args) {
 
         League league = new League();
 
-        readFile("bundesliga-1819.csv");
+        league = readFile("bundesliga-1819.csv", league);
 
         printTable(league.getTable());
     }
 
-    public static void readFile(String filename){
+    public static League readFile(String filename, League league){
 
         List bundesliga1819 = null;
 
@@ -33,8 +31,6 @@ public class Main {
             e.printStackTrace();
         }
 
-        League league = new League();
-
         for (int i = 1; i < bundesliga1819.size(); i++) {
 
             String[] match = bundesliga1819.get(i).toString().split(";");
@@ -42,10 +38,22 @@ public class Main {
             league.addMatchResult(new Match(match[1], match[2], Integer.parseInt(match[3]), Integer.parseInt(match[4])));
 
         }
+
+        return league;
     }
 
     private static void printTable(List<Team> teams) {
-        System.out.println(teams.size());
+
+        System.out.printf("%-20s%5s%5s%5s%5s%5s%5s%5s%n", "Team", "Pts", 'W', 'D', 'L', "GF", "GA", "GD");
+
+        for (Team team : teams) {
+            System.out.printf("%-20s%5d%5d%5d%5d%5d%5d%5d%n", team.getName(), team.getPoints(), team.getWins(), team.getDraws(), team.getDefeats(),
+                    team.getGoalsShot(), team.getGoalsReceived(), team.getGoalDifference());
+        }
+
+        System.out.println();
+        System.out.println("Pts...Points, W...Won, D...Drawn, L...Lost\n" +
+                "GF...Goals for, GA...Goals against, GD...Goal difference");
     }
 
 }

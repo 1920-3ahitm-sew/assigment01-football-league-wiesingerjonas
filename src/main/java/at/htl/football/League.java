@@ -21,14 +21,13 @@ public class League {
             }
         }
 
-        Team cb = new Team(teamName);
-        teams.add(cb);
-        return cb;
+        Team newTeam = new Team(teamName);
+        teams.add(newTeam);
+        return newTeam;
     }
 
-    public List<Team> getTable(){
+    public List<Team> getTable() {
         teams.sort(Collections.reverseOrder());
         return teams;
     }
-
 }
